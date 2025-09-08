@@ -29,14 +29,22 @@ export default function UserCard({ user }) {
                     </div>
                 </CardTitle>
             </CardHeader>
-            <CardContent className={`flex justify-between`}>
-                <div className="">
-                    <div className="flex gap-1 font-bold">
-                        <p className="text-xl">Solved: </p>
+            <CardContent className={`flex justify-between gap-2`}>
+                <div className="flex gap-2">
+                    <div className="flex gap-1 font-bold flex-col border-2 p-2 rounded-2xl">
+                        <p className="text-xl opacity-65">Solved: </p>
                         <p className="text-xl">{user.totalSolved}</p>
                     </div>
-                    <p className="text-xl font-semibold">Global Rank: {user.ranking}</p>
-                    <p className="text-xl font-medium">Total Badges: {user.badges.length}</p>
+                    <div className="flex gap-1 font-bold flex-col border-2 p-2 rounded-2xl">
+                        <p className="text-xl opacity-65">Global Rank: </p>
+                        <p className="text-xl">{user.ranking}</p>
+                    </div>
+                    <div className="flex gap-1 font-bold flex-col border-2 p-2 rounded-2xl">
+                        <p className="text-xl opacity-65">Total Badges: </p>
+                        <p className="text-xl">{user.badges.length}</p>
+                    </div>
+                    {/* <p className="text-xl font-semibold"> </p>
+                    <p className="text-xl font-medium"> </p> */}
                 </div>
                 <div className="text-xl font-medium">
                     <p>Leetcode coins: {user.leetcodeCoins}</p>
