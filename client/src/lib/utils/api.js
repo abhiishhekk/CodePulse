@@ -3,7 +3,7 @@ import axios from 'axios';
 
 const api = axios.create({
   baseURL: "https://leetpulse.onrender.com/api/v1/", // your backend proxy
-  timeout: 5000,
+  timeout: 60000,
 });
 
 // Optional: handle errors globally
