@@ -19,7 +19,7 @@ import { Problems } from "./Problems";
 import { useEffect, useState } from "react";
 
 export default function StatsTab({stats, user, contestHistory, contestError, streakData, streakError}){
-    // if(!stats) return null;
+    if(!stats && !user) return null;
 
     const [level, setLevel] = useState(true);
     const [easy, setEasy] = useState(false);
@@ -104,16 +104,16 @@ export default function StatsTab({stats, user, contestHistory, contestError, str
                 {!contestError && <Card className={`grid grid-cols-2 bg-[#fafafc]`}>
                     <CardContent className="p-4 flex flex-col gap-2 justify-center">
                         <div className="flex gap-1"><p className="font-serif">Contest Rating:</p>
-                            <p>{stats.contestRating}</p>
+                            <p>{stats?.contestRating}</p>
                          </div>
                         <div className="flex gap-1"><p>Contests Attended: </p>
-                            <p>{stats.totalContestsAttended}</p>
+                            <p>{stats?.totalContestsAttended}</p>
                         </div>
                         <div className="flex gap-1"><p>Global Contest Rank: </p>
-                            <p>{stats.globalRank}</p>
+                            <p>{stats?.globalRank}</p>
                         </div>
                         <div className="flex gap-1"><p>Top Percentage: </p>
-                            <p>{stats.topPercentage}</p>
+                            <p>{stats?.topPercentage}</p>
                         </div>
                     </CardContent>
                     <CardContent>
