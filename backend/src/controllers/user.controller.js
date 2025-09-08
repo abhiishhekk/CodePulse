@@ -11,7 +11,7 @@ export const getUserProfile = async (req, res)=>{
             return res.status(404)
             .json({error: "failed to get user"})
         }
-        console.log(user);
+        // console.log(user);
         // console.log("total QUESTION COUNT", user.matchedUser.submitStats.totalSubmissionNum);
         // console.log("ac submission", user.matchedUser.submitStats.acSubmissionNum.find((d)=>d.difficulty==="Medium"));
         const solved = user.matchedUser.submitStats.acSubmissionNum.find(
