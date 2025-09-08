@@ -18,8 +18,8 @@ import { Chart } from "./Chart.jsx";
 import { Problems } from "./Problems";
 import { useEffect, useState } from "react";
 
-export default function StatsTab({stats, user, contestHistory, streakData, streakError}){
-    if(!stats) return null;
+export default function StatsTab({stats, user, contestHistory, contestError, streakData, streakError}){
+    // if(!stats) return null;
 
     const [level, setLevel] = useState(true);
     const [easy, setEasy] = useState(false);
@@ -101,7 +101,7 @@ export default function StatsTab({stats, user, contestHistory, streakData, strea
             </TabsContent>
 
             <TabsContent value="contests">
-                <Card className={`grid grid-cols-2 bg-[#fafafc]`}>
+                {!contestError && <Card className={`grid grid-cols-2 bg-[#fafafc]`}>
                     <CardContent className="p-4 flex flex-col gap-2 justify-center">
                         <div className="flex gap-1"><p className="font-serif">Contest Rating:</p>
                             <p>{stats.contestRating}</p>
@@ -119,12 +119,17 @@ export default function StatsTab({stats, user, contestHistory, streakData, strea
                     <CardContent>
                         <Chart history = {contestHistory}/>
                     </CardContent>
-                </Card>
-                <Card>
+                </Card>}
+                {contestError &&
+
+                    <div>No contest details available</div>
+
+                }
+                {!contestError && <Card>
                     <CardContent className={`bg-[#fafafc]`}>
                         <ContestHistory history={contestHistory}/>
                     </CardContent>
-                </Card>
+                </Card>}
             </TabsContent>
         </Tabs>
     )

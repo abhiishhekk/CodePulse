@@ -18,6 +18,7 @@ export default function Home() {
   const [username, setUsername] = useState("");
   const [streakData, setStreakData] = useState(null);
   const [streakError, setStreakError] = useState("");
+  const [contestError, setContestError] = useState("");
   // async function fetchUser(username){
   //     try {
   //         setSearched(true);
@@ -61,13 +62,18 @@ export default function Home() {
         });
         setUser(userData);
         // console.log(userData);
-        const { data: contestData } = await api.get(`/user/${username}/contest`, {
-          signal: controller.signal,
-        });
-        setContestStats(contestData);
-        // console.log(stats?.contestBadge)
-        setRankingHistory(contestData.contestRankingHistory);
-        // console.log(contestData.contestBadge.name);
+        try {
+          const { data: contestData } = await api.get(`/user/${username}/contest`, {
+            signal: controller.signal,
+          });
+          setContestStats(contestData);
+          // console.log(stats?.contestBadge)
+          setRankingHistory(contestData.contestRankingHistory);
+          // console.log(contestData.contestBadge.name);
+        } catch (contestApiError) {
+          console.error("Failed to fetch contest data:", contestApiError);
+          setContestError("Could not load Contest data.");
+        }
         try {
           const { data: streakDataResponse } = await api.get(`/user/${username}/streak`);
           setStreakData(streakDataResponse);
@@ -116,11 +122,11 @@ export default function Home() {
           </Alert>
         </div>
         }
-        
+
 
         <div className="grid lg:grid-cols-2 gap-2 pt-20">
-          {!error && !loading && <UserCard user={user} streakData={streakData} streakError = {streakError} badge={stats?.contestBadge}/>}
-          {!error && !loading && <StatsTab stats={stats} user={user} contestHistory={rankingHistory} streakData={streakData} streakError = {streakError}/>}
+          {!error && !loading && <UserCard user={user} streakData={streakData} streakError={streakError} badge={stats?.contestBadge} />}
+          {!error && !loading && <StatsTab stats={stats} user={user} contestHistory={rankingHistory} contestError={contestError} streakData={streakData} streakError={streakError} />}
         </div>
       </div>}
     </div>
