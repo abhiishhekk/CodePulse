@@ -120,7 +120,7 @@ export default function Home() {
 
         <div className="grid lg:grid-cols-2 gap-2 pt-20">
           {!error && !loading && <UserCard user={user} streakData={streakData} streakError = {streakError} badge={stats?.contestBadge}/>}
-          {!error && !loading && <StatsTab stats={stats} user={user} contestHistory={rankingHistory} />}
+          {!error && !loading && <StatsTab stats={stats} user={user} contestHistory={rankingHistory} streakData={streakData} streakError = {streakError}/>}
         </div>
       </div>}
     </div>

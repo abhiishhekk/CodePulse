@@ -18,7 +18,7 @@ import { Chart } from "./Chart.jsx";
 import { Problems } from "./Problems";
 import { useEffect, useState } from "react";
 
-export default function StatsTab({stats, user, contestHistory}){
+export default function StatsTab({stats, user, contestHistory, streakData, streakError}){
     if(!stats) return null;
 
     const [level, setLevel] = useState(true);
@@ -71,7 +71,7 @@ export default function StatsTab({stats, user, contestHistory}){
                     {easy && <Problems solved={user?.easySolved} total={user?.totalEasy} type="Easy"/>}
                     {medium && <Problems solved={user?.mediumSolved} total={user?.totalMedium} type="Medium"/>}
                     {hard && <Problems solved={user?.hardSolved} total={user?.totalHard} type="Hard"/>}
-                    <div className="flex flex-col justify-center items-center gap-y-1">
+                    <div className="flex flex-col justify-center items-center gap-y-2">
                         <div className="px-3 py-1 flex flex-col justify-center items-center font-serif border-2 rounded-2xl " onMouseEnter={()=>{setEasy(true); setLevel(false)}} onMouseLeave={()=>{setEasy(false); setLevel(true)}} >
                             <p className="text-[#1cbaba]">Easy</p>
                             <p>{user?.easySolved}/{user?.totalEasy}</p>
@@ -84,10 +84,20 @@ export default function StatsTab({stats, user, contestHistory}){
                             <p className="text-[#f63737]">Hard</p>
                             <p>{user?.hardSolved}/{user?.totalHard}</p>
                         </div>
+                        <div className="flex gap-2 font-serif">
+                            Total Acive Days:
+                            {!streakError && <p>
+                                {streakData?.totalActiveDays}
+                            </p>}
+                            {streakError && <p>
+                                Not public
+                            </p>}
+                        </div>
                     </div>
+
+                    
                 </Card>
-                <div>
-                </div>
+                
             </TabsContent>
 
             <TabsContent value="contests">
