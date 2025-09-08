@@ -56,6 +56,8 @@ export default function Home() {
         setError("");
         setUser(null); // Also a good idea to clear old data
         setContestStats(null);
+        setContestError("");
+        setStreakError("");
 
         const { data: userData } = await api.get(`/user/${username}`, {
           signal: controller.signal, // Pass the signal to the request
