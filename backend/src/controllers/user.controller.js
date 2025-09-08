@@ -11,7 +11,7 @@ export const getUserProfile = async (req, res)=>{
             return res.status(404)
             .json({error: "failed to get user"})
         }
-        console.log(user.matchedUser.submitStats);
+        // console.log(user.matchedUser);
         // console.log("total QUESTION COUNT", user.matchedUser.submitStats.totalSubmissionNum);
         // console.log("ac submission", user.matchedUser.submitStats.acSubmissionNum.find((d)=>d.difficulty==="Medium"));
         const solved = user.matchedUser.submitStats.acSubmissionNum.find(
@@ -46,15 +46,15 @@ export const getUserContest = async (req, res) => {
         const {username} = req.params;
         // console.log(username);
         const contest = await lc.user_contest_info(username);
-        console.log(contest);
+        // console.log(contest.userContestRanking);
         res.json({
-            contestRating: contest.userContestRanking.rating,
-            totalContestsAttended: contest.userContestRanking.attendedContestsCount,
-            globalRank: contest.userContestRanking.globalRanking,
-            topPercentage: contest.userContestRanking.topPercentage,
+            contestRating: contest.userContestRanking?.rating,
+            totalContestsAttended: contest.userContestRanking?.attendedContestsCount,
+            globalRank: contest.userContestRanking?.globalRanking,
+            topPercentage: contest.userContestRanking?.topPercentage,
             contestRankingHistory:contest.userContestRankingHistory.filter((c)=>c.attended===true).slice(-10).reverse(),
-            totalContests:contest.userContestRankingHistory.length,
-            contestBadge:contest.userContestRanking.badge,
+            totalContests:contest.userContestRankingHistory?.length,
+            contestBadge:contest.userContestRanking.badge?.name,
         });
         // console.log(res.json(contest));
     } catch (error) {

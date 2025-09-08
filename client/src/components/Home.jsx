@@ -16,7 +16,8 @@ export default function Home() {
   const [rankingHistory, setRankingHistory] = useState([]);
   const [searched, setSearched] = useState(false);
   const [username, setUsername] = useState("");
-  // const [totalContests, setTotalContest] = useState(0);
+  const [streakData, setStreakData] = useState(null);
+  const [streakError, setStreakError] = useState("");
   // async function fetchUser(username){
   //     try {
   //         setSearched(true);
@@ -59,13 +60,21 @@ export default function Home() {
           signal: controller.signal, // Pass the signal to the request
         });
         setUser(userData);
-
+        // console.log(userData);
         const { data: contestData } = await api.get(`/user/${username}/contest`, {
           signal: controller.signal,
         });
         setContestStats(contestData);
+        // console.log(stats?.contestBadge)
         setRankingHistory(contestData.contestRankingHistory);
-
+        // console.log(contestData.contestBadge.name);
+        try {
+          const { data: streakDataResponse } = await api.get(`/user/${username}/streak`);
+          setStreakData(streakDataResponse);
+        } catch (streakApiError) {
+          console.error("Failed to fetch streak data:", streakApiError);
+          setStreakError("Could not load streak data."); // Set a specific error for the streak
+        }
       } catch (error) {
         if (error.name === 'CanceledError') {
           // This isn't a real error, just the request being canceled.
@@ -86,7 +95,7 @@ export default function Home() {
       controller.abort();
     };
   }, [username]); // This effect re-runs whenever the 'username' changes
-
+  // console.log("contest stats is here" ,stats?.contestBadge);
   return (
     <div>
       {!searched && <div>
@@ -107,9 +116,10 @@ export default function Home() {
           </Alert>
         </div>
         }
+        
 
-        <div className="grid md:grid-cols-2 gap-2 pt-20">
-          {!error && !loading && <UserCard user={user} />}
+        <div className="grid lg:grid-cols-2 gap-2 pt-20">
+          {!error && !loading && <UserCard user={user} streakData={streakData} streakError = {streakError} badge={stats?.contestBadge}/>}
           {!error && !loading && <StatsTab stats={stats} user={user} contestHistory={rankingHistory} />}
         </div>
       </div>}
