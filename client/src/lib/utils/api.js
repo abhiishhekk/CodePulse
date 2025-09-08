@@ -3,7 +3,7 @@ import axios from 'axios';
 
 const api = axios.create({
   baseURL: `${import.meta.env.VITE_BACKENDURL}/api/v1/`, // your backend proxy
-  timeout: 60000,
+  timeout: 90000,
 });
 console.log("backend url", import.meta.env.VITE_BACKENDURL);
 // Optional: handle errors globally
