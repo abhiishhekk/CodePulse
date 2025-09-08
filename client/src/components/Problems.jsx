@@ -54,8 +54,8 @@ export function Problems({solved, total, type}) {
             data={chartData}
             startAngle={90}
             endAngle={(solved/total)*360 + 90}
-            innerRadius={80}
-            outerRadius={110}
+            innerRadius={73}
+            outerRadius={140}
             
           >
             <PolarGrid
@@ -63,9 +63,10 @@ export function Problems({solved, total, type}) {
               radialLines={false}
               stroke="none"
               className="first:fill-muted last:fill-background"
-              polarRadius={[86, 74]}
+              polarRadius={[86, 60]}
+              
             />
-            <RadialBar dataKey="solved" background cornerRadius={10} />
+            <RadialBar dataKey="solved" background cornerRadius={10}/>
             <PolarRadiusAxis tick={false} tickLine={false} axisLine={false} >
               <Label
                 content={({ viewBox }) => {

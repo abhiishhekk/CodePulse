@@ -71,17 +71,17 @@ export default function StatsTab({stats, user, contestHistory}){
                     {easy && <Problems solved={user?.easySolved} total={user?.totalEasy} type="Easy"/>}
                     {medium && <Problems solved={user?.mediumSolved} total={user?.totalMedium} type="Medium"/>}
                     {hard && <Problems solved={user?.hardSolved} total={user?.totalHard} type="Hard"/>}
-                    <div className="flex flex-col justify-center items-center">
-                        <div className="px-5 py-3 flex flex-col justify-center items-center font-serif" onMouseEnter={()=>{setEasy(true); setLevel(false)}} onMouseLeave={()=>{setEasy(false); setLevel(true)}} >
-                            <p>Easy</p>
+                    <div className="flex flex-col justify-center items-center gap-y-1">
+                        <div className="px-3 py-1 flex flex-col justify-center items-center font-serif border-2 rounded-2xl " onMouseEnter={()=>{setEasy(true); setLevel(false)}} onMouseLeave={()=>{setEasy(false); setLevel(true)}} >
+                            <p className="text-[#1cbaba]">Easy</p>
                             <p>{user?.easySolved}/{user?.totalEasy}</p>
                         </div>
-                        <div className="px-5 py-3 flex flex-col justify-center items-center font-serif" onMouseEnter={()=>{setMedium(true); setLevel(false)}} onMouseLeave={()=>{setMedium(false); setLevel(true)}}>
-                            <p>Medium</p>
+                        <div className="px-3 py-1 flex flex-col justify-center items-center font-serif border-2  rounded-2xl" onMouseEnter={()=>{setMedium(true); setLevel(false)}} onMouseLeave={()=>{setMedium(false); setLevel(true)}}>
+                            <p className="text-[#ffb700]">Medium</p>
                             <p>{user?.mediumSolved}/{user?.totalMedium}</p>
                         </div>
-                        <div className="px-5 py-3 flex flex-col justify-center items-center font-serif" onMouseEnter={()=>{setHard(true); setLevel(false)}} onMouseLeave={()=>{setHard(false); setLevel(true)}}>
-                            <p>Hard</p>
+                        <div className="px-3 py-1 flex flex-col justify-center items-center font-serif border-2  rounded-2xl" onMouseEnter={()=>{setHard(true); setLevel(false)}} onMouseLeave={()=>{setHard(false); setLevel(true)}}>
+                            <p className="text-[#f63737]">Hard</p>
                             <p>{user?.hardSolved}/{user?.totalHard}</p>
                         </div>
                     </div>
