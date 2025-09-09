@@ -26,7 +26,7 @@ export default function Initial({setUsername}){
                 className={`w-[30rem] bg-amber-100`}
                 
             />
-            <Button onClick={()=>setUsername(username)}>Search</Button>
+            <Button onClick={()=>setUsername(username)} variant="secondary">Search</Button>
             </div>
         </nav>
     )
