@@ -36,7 +36,7 @@ export default function StatsTab({stats, user, contestHistory, contestError, str
     //         setHard(true);
     //     }
     // }, [level])
-    console.log(easy);
+    // console.log(easy);
     return(
         <Tabs defaultValue="problems" className="w-[50rem] md:w-full max-w-2xl mx-auto felx flex-col ">
             <TabsList className="grid grid-cols-2">
@@ -122,7 +122,7 @@ export default function StatsTab({stats, user, contestHistory, contestError, str
                 </Card>}
                 {contestError &&
 
-                    <div>No contest details available</div>
+                    <div className="h-full w-full flex items-center justify-center">No contest attended yet</div>
 
                 }
                 {!contestError && <Card>

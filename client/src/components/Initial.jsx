@@ -23,7 +23,7 @@ export default function Initial({setUsername}){
                 placeholder="Enter leetcode username..."
                 value={username}
                 onChange= {(e)=>setUsern(e.target.value)}
-                className={`w-[30rem] bg-amber-100`}
+                className={`w-[30rem] bg-accent`}
                 
             />
             <Button onClick={()=>setUsername(username)} variant="secondary">Search</Button>
